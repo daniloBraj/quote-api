@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import SavedQuotes from "./Comp/Quote";
-import "./App.css"
+import "./App.css";
 
 const App = () => {
   const [error, setError] = useState(null);
