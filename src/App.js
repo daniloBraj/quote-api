@@ -1,11 +1,12 @@
-import { useState } from "react";
-import { useEffect } from "react";
-
+import React, { useState, useEffect } from "react";
 import "./App.css";
+import SavedQuotes from "./Comp/Quote";
+import "./App.css"
 
 const App = () => {
   const [error, setError] = useState(null);
   const [quote, setQuote] = useState(null);
+  const [savedQuotes, setSavedQuotes] = useState([]);
 
   const fetchQuote = async () => {
     try {
@@ -22,6 +23,13 @@ const App = () => {
       console.log(err.message);
     }
   };
+
+  const saveQuote = () => {
+    if (quote) {
+      setSavedQuotes((prevSavedQuotes) => [...prevSavedQuotes, quote]);
+    }
+  };
+
   useEffect(() => {
     fetchQuote();
   }, []);
@@ -35,13 +43,16 @@ const App = () => {
           <div>
             <h2>{quote.quote}</h2>
             <p>{quote.author}</p>
+            <button onClick={saveQuote}>Save Quote</button>
           </div>
         ) : (
           <p>No quote available</p>
         )}
       </div>
-      <button onClick={fetchQuote}>Generate Quote</button>
+      <button onClick={fetchQuote}>Generate New Quote</button>
+      <SavedQuotes quotes={savedQuotes} />
     </div>
   );
 };
+
 export default App;
