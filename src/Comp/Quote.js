@@ -1,6 +1,6 @@
 import React from "react";
 
-const SavedQuotes = ({ quotes }) => {
+const SavedQuotes = ({ quotes, onDelete }) => {
   return (
     <div>
       <h2>Saved Quotes</h2>
@@ -12,6 +12,7 @@ const SavedQuotes = ({ quotes }) => {
             <li key={index}>
               <h3>{quote.quote}</h3>
               <p>{quote.author}</p>
+              <button onClick={() => onDelete(index)}>Remove Quote</button>
             </li>
           ))}
         </ul>

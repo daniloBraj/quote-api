@@ -8,6 +8,12 @@ const App = () => {
   const [quote, setQuote] = useState(null);
   const [savedQuotes, setSavedQuotes] = useState([]);
 
+  const handleDelete = (index) => {
+    const updatedQuote = [...quote];
+    updatedQuote.splice(index, 1);
+    setSavedQuotes(updatedQuote);
+  };
+
   const fetchQuote = async () => {
     try {
       const response = await fetch(
@@ -50,7 +56,9 @@ const App = () => {
         )}
       </div>
       <button onClick={fetchQuote}>Generate New Quote</button>
-      <SavedQuotes quotes={savedQuotes} />
+      <SavedQuotes 
+      quotes={savedQuotes}
+      onDelete={handleDelete} />
     </div>
   );
 };
